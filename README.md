@@ -1,2 +1,2 @@
-# gout-support.com
-having problems with LearZy , contact us
+# gout-support.github.io
+having problems with LearnZy , contact us
