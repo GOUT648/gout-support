@@ -1,533 +1,700 @@
-// ===== TRANSLATIONS =====
-const translations = {
-    en: {
-        // General
-        title: "GOUT AI Solutions",
-        subtitle: "AI Solutions",
-        home: "Home",
-        about: "About Us",
-        support: "Support",
-        careers: "Careers",
-        copyright: "© 2023 GOUT Industries. All rights reserved.",
-        
-        // Hero section
-        hero_title: "Elevate Your Experience With GOUT",
-        hero_subtitle: "AI-powered solutions for modern businesses",
-        get_support: "Get Support",
-        join_team: "Join Our Team",
-        learn_more: "Learn About Us",
-        
-        // AI Assistant
-        ai_title: "GOUT Assistant",
-        ai_placeholder: "Ask me anything...",
-        
-        // Complaint form
-        complaint_title: "Submit Complaint - GOUT",
-        complaint_heading: "Submit a Complaint",
-        complaint_subtext: "We're here to help. Please fill out the form below.",
-        name_label: "Your Name",
-        email_label: "Email Address",
-        category_label: "Issue Category",
-        select_category: "Select a category",
-        tech_issue: "Technical Issue",
-        billing_issue: "Billing Problem",
-        service_issue: "Service Complaint",
-        message_label: "Detailed Description",
-        message_placeholder: "Describe your issue in detail...",
-        submit_btn: "Submit Complaint",
-        
-        // Careers
-        careers_title: "Careers - GOUT",
-        careers_heading: "Join Our Team",
-        careers_subtext: "We're building the future of AI. Come be part of something amazing.",
-        job1_title: "AI Engineer",
-        job1_desc: "Work on cutting-edge AI projects like LearnZy.",
-        job2_title: "Support Specialist",
-        job2_desc: "Help users with our products and services.",
-        apply_now: "Apply Now",
-        apply_for: "Apply for",
-        resume_label: "Resume (PDF)",
-        submit_application: "Submit Application",
-        
-        // About Us
-        about_title: "About GOUT - LearnZy Team",
-        about_heading: "About GOUT & LearnZy",
-        about_subheading: "Building the future of AI-powered education",
-        who_we_are: "Who We Are",
-        who_we_are_text: "LearnZy is an educational platform helping children learn mathematics in a personalized, interactive way. We're GOUT Industries - innovators in educational technology founded by Chirica Gheorghe and Siriteanu Nicolai.",
-        our_mission: "Our Mission",
-        our_mission_text: "We believe every child deserves equal access to quality education. Through technology and AI, we provide modern learning tools with constant support.",
-        core_team: "Founders & Core Team",
-        role_ceo: "CEO & Full-stack Developer",
-        role_cto: "CTO & Front-end Developer",
-        our_values: "Our Values",
-        value1: "Transparency - Clear and honest communication",
-        value2: "Respect - Active listening and acceptance",
-        value3: "Innovation - Testing ideas, learning from mistakes",
-        value4: "Responsibility - Owning our roles and impact",
-        value5: "Mutual Support - Being there for each other"
-    },
-    ro: {
-        // General
-        title: "GOUT Soluții AI",
-        subtitle: "Soluții AI",
-        home: "Acasă",
-        about: "Despre Noi",
-        support: "Suport",
-        careers: "Cariere",
-        copyright: "© 2023 GOUT Industries. Toate drepturile rezervate.",
-        
-        // Hero section
-        hero_title: "Îmbunătățește-ți experiența cu GOUT",
-        hero_subtitle: "Soluții propulsate de AI pentru afaceri moderne",
-        get_support: "Obține suport",
-        join_team: "Alătură-te echipei",
-        learn_more: "Află despre noi",
-        
-        // AI Assistant
-        ai_title: "Asistent GOUT",
-        ai_placeholder: "Întreabă-mă orice...",
-        
-        // Complaint form
-        complaint_title: "Trimite reclamație - GOUT",
-        complaint_heading: "Trimite o reclamație",
-        complaint_subtext: "Suntem aici să te ajutăm. Completează formularul de mai jos.",
-        name_label: "Numele tău",
-        email_label: "Adresă de email",
-        category_label: "Categoria problemei",
-        select_category: "Selectează o categorie",
-        tech_issue: "Problemă tehnică",
-        billing_issue: "Problemă de facturare",
-        service_issue: "Reclamație serviciu",
-        message_label: "Descriere detaliată",
-        message_placeholder: "Descrie problema în detaliu...",
-        submit_btn: "Trimite reclamația",
-        
-        // Careers
-        careers_title: "Cariere - GOUT",
-        careers_heading: "Alătură-te echipei",
-        careers_subtext: "Construim viitorul AI. Fii parte din ceva extraordinar.",
-        job1_title: "Inginer AI",
-        job1_desc: "Lucrează la proiecte AI de ultimă oră precum LearnZy.",
-        job2_title: "Specialist Suport",
-        job2_desc: "Ajută utilizatorii cu produsele și serviciile noastre.",
-        apply_now: "Aplică acum",
-        apply_for: "Aplică pentru",
-        resume_label: "CV (PDF)",
-        submit_application: "Trimite aplicația",
-        
-        // About Us
-        about_title: "Despre GOUT - Echipa LearnZy",
-        about_heading: "Despre GOUT & LearnZy",
-        about_subheading: "Construim viitorul educației cu AI",
-        who_we_are: "Cine Suntem",
-        who_we_are_text: "LearnZy este o platformă educațională care ajută copiii să învețe matematica într-un mod personalizat și interactiv. Suntem GOUT Industries - inovatori în tehnologia educațională fondați de Chirica Gheorghe și Siriteanu Nicolai.",
-        our_mission: "Misiunea Noastră",
-        our_mission_text: "Credem că fiecare copil merită acces egal la educație de calitate. Prin tehnologie și AI, oferim instrumente moderne de învățare cu suport constant.",
-        core_team: "Fondatori & Echipa de Bază",
-        role_ceo: "CEO & Developer Full-stack",
-        role_cto: "CTO & Developer Front-end",
-        our_values: "Valorile Noastre",
-        value1: "Transparență - Comunicare clară și onestă",
-        value2: "Respect - Ascultare activă și acceptare",
-        value3: "Inovație - Testăm idei, învățăm din greșeli",
-        value4: "Responsabilitate - Ne asumăm rolurile și impactul",
-        value5: "Sprijin Reciproc - Suntem acolo unii pentru alții"
-    }
-};
-
-// ===== GLOBAL VARIABLES =====
-let currentLanguage = 'en';
-let currentTheme = 'light';
-
-// ===== PAGE NAVIGATION =====
-function initPageNavigation() {
-    // Handle nav link clicks
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            
-            // Update active nav link
-            document.querySelectorAll('.nav-link').forEach(navLink => {
-                navLink.classList.remove('active');
-            });
-            this.classList.add('active');
-            
-            // Show target section
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active-section');
-            });
-            document.getElementById(targetId).classList.add('active-section');
-            
-            // Update URL without reload
-            history.pushState(null, null, `#${targetId}`);
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        });
-    });
-    
-    // Handle initial page load
-    const hash = window.location.hash.substring(1);
-    const validSections = ['home', 'about', 'complaints', 'careers'];
-    const defaultSection = validSections.includes(hash) ? hash : 'home';
-    
-    // Set active section
-    document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.remove('active-section');
-    });
-    document.getElementById(defaultSection).classList.add('active-section');
-    
-    // Set active nav link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${defaultSection}`) {
-            link.classList.add('active');
-        }
-    });
+/* ===== GLOBAL STYLES ===== */
+:root {
+    /* Light theme */
+    --bg-color: #f8f9fa;
+    --text-color: #333344;
+    --primary-color: #5e72e4;
+    --secondary-color: #825ee4;
+    --accent-color: #f5365c;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+    --input-bg: #ffffff;
+    --input-text: #495057;
+    --footer-bg: #e9ecef;
+    --shape-color-1: rgba(94, 114, 228, 0.1);
+    --shape-color-2: rgba(133, 94, 228, 0.1);
+    --shape-color-3: rgba(228, 94, 178, 0.1);
+    --shape-color-4: rgba(94, 211, 228, 0.1);
 }
 
-// ===== LANGUAGE FUNCTIONS =====
-function applyTranslations(lang) {
-    currentLanguage = lang;
-    document.documentElement.lang = lang;
-    
-    // Update all translatable elements
-    document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (translations[lang][key]) {
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                el.placeholder = translations[lang][key];
-            } else if (el.tagName === 'OPTION') {
-                el.textContent = translations[lang][key];
-            } else {
-                el.textContent = translations[lang][key];
-            }
-        }
-    });
-    
-    // Update form language hidden fields
-    const formLangInputs = document.querySelectorAll('[id^="form-language"]');
-    formLangInputs.forEach(input => {
-        input.value = lang;
-    });
-    
-    // Update active language button
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-    
-    // Update page title
-    const activeSection = document.querySelector('.page-section.active-section');
-    if (activeSection) {
-        const sectionId = activeSection.id;
-        if (sectionId === 'home') {
-            document.title = translations[lang].title;
-        } else if (sectionId === 'about') {
-            document.title = translations[lang].about_title;
-        } else if (sectionId === 'complaints') {
-            document.title = translations[lang].complaint_title;
-        } else if (sectionId === 'careers') {
-            document.title = translations[lang].careers_title;
-        }
-    }
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --primary-color: #7c6cf0;
+    --secondary-color: #9c6cf0;
+    --accent-color: #ff6b6b;
+    --card-bg: #1e1e1e;
+    --border-color: #333344;
+    --input-bg: #2d2d2d;
+    --input-text: #f1f1f1;
+    --footer-bg: #1a1a1a;
+    --shape-color-1: rgba(124, 108, 240, 0.1);
+    --shape-color-2: rgba(156, 108, 240, 0.1);
+    --shape-color-3: rgba(240, 108, 192, 0.1);
+    --shape-color-4: rgba(108, 228, 240, 0.1);
 }
 
-// ===== THEME FUNCTIONS =====
-function toggleTheme() {
-    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    localStorage.setItem('theme', currentTheme);
-    
-    // Update icon
-    const icon = document.querySelector('#theme-toggle i');
-    if (icon) {
-        icon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    currentTheme = savedTheme;
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    
-    // Set correct icon
-    const icon = document.querySelector('#theme-toggle i');
-    if (icon) {
-        icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
-// ===== AI ASSISTANT FUNCTIONS =====
-function initAIAssistant() {
-    const aiToggle = document.getElementById('ai-toggle');
-    const aiAssistant = document.getElementById('ai-assistant');
-    const aiClose = document.getElementById('ai-close');
-    const aiMessages = document.getElementById('ai-messages');
-    const aiInput = document.getElementById('ai-input');
-    const aiSend = document.getElementById('ai-send');
-    
-    if (!aiToggle) return;
-    
-    let aiActive = false;
-    
-    // Toggle assistant visibility
-    aiToggle.addEventListener('click', () => {
-        aiActive = !aiActive;
-        aiAssistant.style.display = aiActive ? 'flex' : 'none';
-    });
-    
-    // Close assistant
-    aiClose.addEventListener('click', () => {
-        aiActive = false;
-        aiAssistant.style.display = 'none';
-    });
-    
-    // Add message to chat
-    function addMessage(sender, text) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${sender}`;
-        messageDiv.textContent = text;
-        aiMessages.appendChild(messageDiv);
-        aiMessages.scrollTop = aiMessages.scrollHeight;
-    }
-    
-    // Get AI response based on language
-    function getAIResponse(message) {
-        const lowerMsg = message.toLowerCase();
-        
-        if (lowerMsg.includes('complaint') || lowerMsg.includes('problem') || lowerMsg.includes('reclama') || lowerMsg.includes('problemă')) {
-            return currentLanguage === 'en' 
-                ? "You can submit complaints on our support page. All complaints are sent to goutcontact851@gmail.com and will be addressed promptly." 
-                : "Puteți trimite reclamații pe pagina noastră de suport. Toate reclamațiile sunt trimise la goutcontact851@gmail.com și vor fi rezolvate cât mai rapid posibil.";
-        } else if (lowerMsg.includes('job') || lowerMsg.includes('career') || lowerMsg.includes('loc de muncă') || lowerMsg.includes('carieră')) {
-            return currentLanguage === 'en'
-                ? "Check our careers page for open positions. Applications are sent directly to goutcontact851@gmail.com."
-                : "Verificați pagina noastră de cariere pentru posturi disponibile. Aplicațiile sunt trimise direct la goutcontact851@gmail.com.";
-        } else if (lowerMsg.includes('about') || lowerMsg.includes('despre')) {
-            return currentLanguage === 'en'
-                ? "Learn more about us on the About page. GOUT Industries was founded by Chirica Gheorghe and Siriteanu Nicolai."
-                : "Aflați mai multe despre noi pe pagina Despre Noi. GOUT Industries a fost fondată de Chirica Gheorghe și Siriteanu Nicolai.";
-        } else {
-            return currentLanguage === 'en'
-                ? "I'm GOUT's AI assistant. How can I help you today? For direct support, email goutcontact851@gmail.com"
-                : "Sunt asistentul AI al GOUT. Cum vă pot ajuta astăzi? Pentru suport direct, trimiteți un email la goutcontact851@gmail.com";
-        }
-    }
-    
-    // Handle message sending
-    function sendMessage() {
-        const message = aiInput.value.trim();
-        if (!message) return;
-        
-        addMessage('user', message);
-        aiInput.value = '';
-        
-        // Show typing indicator
-        const typingIndicator = document.createElement('div');
-        typingIndicator.className = 'message ai typing';
-        typingIndicator.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
-        aiMessages.appendChild(typingIndicator);
-        aiMessages.scrollTop = aiMessages.scrollHeight;
-        
-        // Remove typing indicator and show response after delay
-        setTimeout(() => {
-            if (typingIndicator.parentNode) {
-                aiMessages.removeChild(typingIndicator);
-            }
-            const response = getAIResponse(message);
-            addMessage('ai', response);
-        }, 1000);
-    }
-    
-    // Event listeners
-    aiSend.addEventListener('click', sendMessage);
-    aiInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
-    
-    // Initial welcome message
-    setTimeout(() => {
-        addMessage('ai', currentLanguage === 'en' 
-            ? "Hello! I'm GOUT's AI assistant. How can I help you today? For direct support, email goutcontact851@gmail.com" 
-            : "Bună! Sunt asistentul AI al GOUT. Cum vă pot ajuta astăzi? Pentru suport direct, trimiteți un email la goutcontact851@gmail.com");
-    }, 1500);
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
 }
 
-// ===== FORM HANDLING =====
-function initForms() {
-    // Complaint form
-    const complaintForm = document.getElementById('complaint-form');
-    if (complaintForm) {
-        complaintForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
-            submitBtn.disabled = true;
-            
-            // Prepare form data
-            const formData = new FormData(this);
-            
-            // Send to Formspree
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message
-                    const successDiv = document.createElement('div');
-                    successDiv.className = 'alert success';
-                    successDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
-                        (currentLanguage === 'en' 
-                            ? 'Your complaint has been submitted to goutcontact851@gmail.com!' 
-                            : 'Reclamația dumneavoastră a fost trimisă la goutcontact851@gmail.com!');
-                    this.parentNode.insertBefore(successDiv, this.nextSibling);
-                    
-                    // Reset form
-                    this.reset();
-                    
-                    // Remove message after 5 seconds
-                    setTimeout(() => {
-                        successDiv.remove();
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert(currentLanguage === 'en' 
-                    ? 'Failed to submit complaint. Please try again or email goutcontact851@gmail.com directly.' 
-                    : 'Trimiterea reclamației a eșuat. Încercați din nou sau trimiteți direct un email la goutcontact851@gmail.com.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
-    
-    // Career application form
-    const careerForm = document.getElementById('career-form');
-    if (careerForm) {
-        careerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
-            submitBtn.disabled = true;
-            
-            // Prepare form data
-            const formData = new FormData(this);
-            
-            // Send to Formspree
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message
-                    const successDiv = document.createElement('div');
-                    successDiv.className = 'alert success';
-                    successDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
-                        (currentLanguage === 'en' 
-                            ? 'Application submitted to goutcontact851@gmail.com successfully!' 
-                            : 'Aplicația a fost trimisă la goutcontact851@gmail.com cu succes!');
-                    this.parentNode.insertBefore(successDiv, this.nextSibling);
-                    
-                    // Reset form
-                    this.reset();
-                    document.getElementById('application-form').style.display = 'none';
-                    
-                    // Remove message after 5 seconds
-                    setTimeout(() => {
-                        successDiv.remove();
-                    }, 5000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert(currentLanguage === 'en' 
-                    ? 'Failed to submit application. Please try again or email goutcontact851@gmail.com directly.' 
-                    : 'Trimiterea aplicației a eșuat. Încercați din nou sau trimiteți direct un email la goutcontact851@gmail.com.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-    }
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.7;
 }
 
-// ===== JOB APPLICATION FORM TOGGLE =====
-function initJobApplication() {
-    const applyButtons = document.querySelectorAll('.apply-btn');
-    const applicationForm = document.getElementById('application-form');
-    
-    if (!applyButtons.length || !applicationForm) return;
-    
-    applyButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const jobTitle = btn.closest('.job-card').querySelector('h3').textContent;
-            document.getElementById('job-title').textContent = jobTitle;
-            document.getElementById('job-title-field').value = jobTitle;
-            applicationForm.style.display = 'block';
-            
-            // Scroll to form
-            applicationForm.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background-color: var(--shape-color-1);
+    top: -100px;
+    left: -100px;
 }
 
-// ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize theme
-    initTheme();
-    
-    // Theme toggle button
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background-color: var(--shape-color-2);
+    bottom: -150px;
+    right: -100px;
+}
+
+.shape-3 {
+    width: 250px;
+    height: 250px;
+    background-color: var(--shape-color-3);
+    top: 40%;
+    left: 30%;
+}
+
+.shape-4 {
+    width: 350px;
+    height: 350px;
+    background-color: var(--shape-color-4);
+    top: 60%;
+    right: 20%;
+}
+
+/* ===== HEADER & NAVIGATION ===== */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-main {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.logo-sub {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-text {
+    display: inline;
+}
+
+.settings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: rotate(30deg);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.page-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.page-section.active-section {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-images {
+    position: relative;
+    height: 200px;
+    margin: 2rem 0;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: float 8s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.7;
+    filter: blur(1px);
+}
+
+.shape-a {
+    width: 150px;
+    height: 150px;
+    background-color: var(--shape-color-1);
+    left: 10%;
+    top: 0;
+    animation-delay: 0s;
+}
+
+.shape-b {
+    width: 180px;
+    height: 180px;
+    background-color: var(--shape-color-3);
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    animation-delay: 0.5s;
+}
+
+.shape-c {
+    width: 120px;
+    height: 120px;
+    background-color: var(--shape-color-2);
+    right: 10%;
+    top: 0;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(94, 114, 228, 0.2);
+}
+
+/* ===== ABOUT US PAGE ===== */
+.about-page {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.about-hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: rotate(30deg);
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.about-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--shape-color-4);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+}
+
+.about-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+.about-content article {
+    margin-bottom: 3rem;
+}
+
+.about-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.team-section {
+    margin-top: 3rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.team-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.values-list {
+    list-style-type: none;
+}
+
+.values-list li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: rgba(94, 114, 228, 0.1);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+    transition: transform 0.3s ease;
+}
+
+.values-list li:hover {
+    transform: translateX(5px);
+}
+
+/* ===== FORM STYLES ===== */
+.form-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.form-page h1 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-page p {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+form {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: var(--shape-color-2);
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.2);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* ===== CAREERS PAGE ===== */
+.careers-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.job-listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.job-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.job-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.job-card p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.application-form {
+    display: none;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--footer-bg);
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* ===== ALERTS ===== */
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.alert.success {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+    border-left: 4px solid #2ecc71;
+}
+
+.alert.error {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+    border-left: 4px solid #e74c3c;
+}
+
+#form-message, #career-message {
+    margin-top: 1rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
     }
     
-    // Language switcher
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.dataset.lang;
-            applyTranslations(lang);
-            localStorage.setItem('language', lang);
-        });
-    });
+    nav {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
     
-    // Initialize language from localStorage
-    const savedLang = localStorage.getItem('language') || 'en';
-    applyTranslations(savedLang);
+    .nav-text {
+        display: none;
+    }
     
-    // Initialize page navigation
-    initPageNavigation();
+    .hero h1 {
+        font-size: 2rem;
+    }
     
-    // Initialize AI assistant
-    initAIAssistant();
+    .cta-buttons {
+        flex-direction: column;
+    }
     
-    // Initialize forms
-    initForms();
+    .about-hero h1 {
+        font-size: 2rem;
+    }
     
-    // Initialize job application
-    initJobApplication();
-});
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .floating-shape {
+        max-width: 100px;
+    }
+    
+    .shape-1, .shape-2, .shape-3, .shape-4 {
+        display: none;
+    }
+}
