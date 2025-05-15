@@ -198,4 +198,34 @@ function initJobApplication() {
             const jobTitle = btn.closest('.job-card').querySelector('h3').textContent;
             document.getElementById('job-title').textContent = jobTitle;
             document.getElementById('job-title-field').value = jobTitle;
-            application
+            applicationForm.style.display = 'block';
+            
+            // Scroll to form
+            applicationForm.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+}
+
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme
+    initTheme();
+    
+    // Theme toggle button
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Initialize page navigation
+    initPageNavigation();
+    
+    // Initialize forms
+    initForms();
+    
+    // Initialize job application
+    initJobApplication();
+    
+    // Initialize EmailJS (replace with your actual User ID)
+    emailjs.init('YOUR_USER_ID');
+});
