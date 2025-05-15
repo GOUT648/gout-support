@@ -3,683 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="title">GOUT AI Solutions</title>
+    <title>GOUT AI Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* ===== GLOBAL STYLES ===== */
-        :root {
-            /* Light theme */
-            --bg-color: #ffffff;
-            --text-color: #333333;
-            --primary-color: #6c5ce7;
-            --secondary-color: #a29bfe;
-            --accent-color: #fd79a8;
-            --card-bg: #f8f9fa;
-            --border-color: #e0e0e0;
-            --input-bg: #ffffff;
-            --input-text: #333333;
-            --footer-bg: #f1f1f1;
-        }
-
-        [data-theme="dark"] {
-            /* Dark theme */
-            --bg-color: #121212;
-            --text-color: #f1f1f1;
-            --primary-color: #7c6cf0;
-            --secondary-color: #8c7cf0;
-            --accent-color: #ff8fab;
-            --card-bg: #1e1e1e;
-            --border-color: #333333;
-            --input-bg: #2d2d2d;
-            --input-text: #f1f1f1;
-            --footer-bg: #1a1a1a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* ===== HEADER & NAVIGATION ===== */
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-main {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .logo-sub {
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        nav a.active {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-text {
-            display: inline;
-        }
-
-        .settings {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .language-switcher {
-            display: flex;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 0.2rem;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .lang-btn.active {
-            background-color: white;
-            color: var(--primary-color);
-        }
-
-        #theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        #theme-toggle:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* ===== MAIN CONTENT ===== */
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            position: relative;
-        }
-
-        .page-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .page-section.active-section {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-            opacity: 0.9;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-images {
-            position: relative;
-            height: 200px;
-            margin: 2rem 0;
-        }
-
-        .floating-img {
-            position: absolute;
-            max-width: 150px;
-            animation: float 6s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        .img1 {
-            left: 10%;
-            top: 0;
-            animation-delay: 0s;
-        }
-
-        .img2 {
-            left: 50%;
-            top: 20px;
-            transform: translateX(-50%);
-            animation-delay: 0.5s;
-        }
-
-        .img3 {
-            right: 10%;
-            top: 0;
-            animation-delay: 1s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
-        }
-
-        /* ===== ABOUT US PAGE ===== */
-        .about-page {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .about-hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .about-hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .highlight {
-            color: var(--accent-color);
-            font-weight: 700;
-        }
-
-        .about-content {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .about-content article {
-            margin-bottom: 3rem;
-        }
-
-        .about-content h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .team-section {
-            margin-top: 3rem;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--primary-color);
-        }
-
-        .values-list {
-            list-style-type: none;
-        }
-
-        .values-list li {
-            padding: 0.8rem;
-            margin-bottom: 0.5rem;
-            background: rgba(108, 92, 231, 0.1);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        /* ===== FORM STYLES ===== */
-        .form-page {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 1rem;
-        }
-
-        .form-page h1 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .form-page p {
-            margin-bottom: 2rem;
-            color: var(--text-color);
-            opacity: 0.8;
-        }
-
-        form {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background-color: var(--input-bg);
-            color: var(--input-text);
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* ===== CAREERS PAGE ===== */
-        .careers-page {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-
-        .job-listings {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .job-card {
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .job-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .job-card p {
-            margin-bottom: 1rem;
-        }
-
-        .application-form {
-            display: none;
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        /* ===== AI ASSISTANT ===== */
-        #ai-assistant {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            max-width: 90%;
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .ai-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-header h3 {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        #ai-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 0.2rem;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        #ai-close:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .ai-messages {
-            padding: 1rem;
-            height: 300px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 0.8rem 1rem;
-            border-radius: 15px;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .message.user {
-            background-color: var(--primary-color);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 5px;
-        }
-
-        .message.ai {
-            background-color: var(--border-color);
-            color: var(--text-color);
-            align-self: flex-start;
-            border-bottom-left-radius: 5px;
-        }
-
-        .ai-input {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        #ai-input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            background-color: var(--input-bg);
-            color: var(--input-text);
-            outline: none;
-        }
-
-        #ai-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
-        }
-
-        #ai-send {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        #ai-send:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        .ai-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .ai-toggle:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.1);
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background-color: var(--footer-bg);
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* ===== ALERTS ===== */
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .alert.success {
-            background-color: rgba(46, 204, 113, 0.2);
-            color: #2ecc71;
-            border-left: 4px solid #2ecc71;
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            nav {
-                width: 100%;
-                justify-content: space-between;
-                flex-wrap: wrap;
-            }
-            
-            .nav-text {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-            }
-            
-            #ai-assistant {
-                width: calc(100% - 40px);
-                right: 20px;
-                left: 20px;
-            }
-            
-            .about-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .floating-img {
-                max-width: 100px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    
     <header>
         <div class="logo-container">
             <div class="logo">
@@ -687,24 +22,20 @@
             </div>
             <div class="logo-text">
                 <span class="logo-main">GOUT</span>
-                <span class="logo-sub" data-translate="subtitle">AI Solutions</span>
+                <span class="logo-sub">AI Solutions</span>
             </div>
         </div>
         
         <nav>
-            <a href="#home" class="nav-link active" data-translate="home"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a>
-            <a href="#about" class="nav-link" data-translate="about"><i class="fas fa-info-circle"></i> <span class="nav-text">About Us</span></a>
-            <a href="#complaints" class="nav-link" data-translate="support"><i class="fas fa-comment-dots"></i> <span class="nav-text">Support</span></a>
-            <a href="#careers" class="nav-link" data-translate="careers"><i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span></a>
+            <a href="#home" class="nav-link active"><i class="fas fa-home"></i> <span class="nav-text">Home</span></a>
+            <a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> <span class="nav-text">About Us</span></a>
+            <a href="#complaints" class="nav-link"><i class="fas fa-comment-dots"></i> <span class="nav-text">Support</span></a>
+            <a href="#careers" class="nav-link"><i class="fas fa-briefcase"></i> <span class="nav-text">Careers</span></a>
             
             <div class="settings">
                 <button id="theme-toggle" title="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="ro">RO</button>
-                </div>
             </div>
         </nav>
     </header>
@@ -713,16 +44,16 @@
         <!-- Home Section -->
         <section id="home" class="page-section active-section">
             <div class="hero">
-                <h1 data-translate="hero_title">Elevate Your Experience With GOUT</h1>
-                <p data-translate="hero_subtitle">AI-powered solutions for modern businesses</p>
+                <h1>Elevate Your Experience With GOUT</h1>
+                <p>AI-powered solutions for modern businesses</p>
                 <div class="hero-images">
-                    <img src="https://media.discordapp.net/attachments/1303708196539727954/1365420793261068388/Gemini_Generated_Image_jh5qhdjh5qhdjh5q-removebg-preview.png?ex=68264b35&is=6824f9b5&hm=c733394bd14e64129ffa280b98c8e839e40bd3e1eef9a164ff8c25835bd4774f&=&format=webp&quality=lossless&width=625&height=625" alt="AI Brain" class="floating-img img1">
-                    <img src="https://cdn3.iconfinder.com/data/icons/education-icons-set-1/256/Pencil__Ruler-512.png" alt="Math Tools" class="floating-img img2">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/023/627/645/small_2x/innovative-idea-modern-stylish-icon-with-light-bulb-png.png" alt="Innovation" class="floating-img img3">
+                    <div class="floating-shape shape-a"></div>
+                    <div class="floating-shape shape-b"></div>
+                    <div class="floating-shape shape-c"></div>
                 </div>
                 <div class="cta-buttons">
-                    <a href="#about" class="btn" data-translate="learn_more"><i class="fas fa-book"></i> Learn About Us</a>
-                    <a href="#careers" class="btn" data-translate="join_team"><i class="fas fa-rocket"></i> Join Our Team</a>
+                    <a href="#about" class="btn"><i class="fas fa-book"></i> Learn About Us</a>
+                    <a href="#careers" class="btn"><i class="fas fa-rocket"></i> Join Our Team</a>
                 </div>
             </div>
         </section>
@@ -731,53 +62,53 @@
         <section id="about" class="page-section">
             <div class="about-page">
                 <div class="about-hero">
-                    <h1 data-translate="about_heading">About <span class="highlight">GOUT</span> & LearnZy</h1>
-                    <p data-translate="about_subheading">Building the future of AI-powered education</p>
+                    <h1>About <span class="highlight">GOUT</span> & LearnZy</h1>
+                    <p>Building the future of AI-powered education</p>
                 </div>
 
                 <div class="about-content">
                     <article>
-                        <h2 data-translate="who_we_are">Who We Are</h2>
-                        <p data-translate="who_we_are_text">
+                        <h2>Who We Are</h2>
+                        <p>
                             LearnZy is an educational platform helping children learn mathematics in a personalized, interactive way. 
                             We're GOUT Industries - innovators in educational technology founded by Chirica Gheorghe and Siriteanu Nicolai.
                         </p>
                     </article>
 
                     <article>
-                        <h2 data-translate="our_mission">Our Mission</h2>
-                        <p data-translate="our_mission_text">
+                        <h2>Our Mission</h2>
+                        <p>
                             We believe every child deserves equal access to quality education. Through technology and AI, 
                             we provide modern learning tools with constant support.
                         </p>
                     </article>
 
                     <article class="team-section">
-                        <h2 data-translate="core_team">Founders & Core Team</h2>
+                        <h2>Founders & Core Team</h2>
                         <div class="team-grid">
                             <div class="team-card">
                                 <img src="https://wallpapers.com/images/hd/one-piece-luffy-victory-pose-u879f23litxmh7zr-2.png" alt="Chirica Gheorghe" class="team-avatar">
                                 <h3>Chirica Gheorghe</h3>
-                                <p data-translate="role_ceo">CEO & Full-stack Developer</p>
+                                <p>CEO & Full-stack Developer</p>
                                 <p>Co-founder of GOUT Industries</p>
                             </div>
                             <div class="team-card">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjaCB18dtFJfLBYTcC9lG5vOTwIzkWI1DhRQ&s" alt="Siriteanu Nicolai" class="team-avatar">
                                 <h3>Siriteanu Nicolai</h3>
-                                <p data-translate="role_cto">CEO & Full-stack Developer</p>
+                                <p>CEO & Full-stack Developer</p>
                                 <p>Co-founder of GOUT Industries</p>
                             </div>
                         </div>
                     </article>
 
                     <article>
-                        <h2 data-translate="our_values">Our Values</h2>
+                        <h2>Our Values</h2>
                         <ul class="values-list">
-                            <li data-translate="value1">Transparency - Clear and honest communication</li>
-                            <li data-translate="value2">Respect - Active listening and acceptance</li>
-                            <li data-translate="value3">Innovation - Testing ideas, learning from mistakes</li>
-                            <li data-translate="value4">Responsibility - Owning our roles and impact</li>
-                            <li data-translate="value5">Mutual Support - Being there for each other</li>
+                            <li>Transparency - Clear and honest communication</li>
+                            <li>Respect - Active listening and acceptance</li>
+                            <li>Innovation - Testing ideas, learning from mistakes</li>
+                            <li>Responsibility - Owning our roles and impact</li>
+                            <li>Mutual Support - Being there for each other</li>
                         </ul>
                     </article>
                 </div>
@@ -787,652 +118,97 @@
         <!-- Complaints Section -->
         <section id="complaints" class="page-section">
             <div class="form-page">
-                <h1 data-translate="complaint_heading"><i class="fas fa-headset"></i> Submit a Complaint</h1>
-                <p data-translate="complaint_subtext">We're here to help. Please fill out the form below.</p>
+                <h1><i class="fas fa-headset"></i> Submit a Complaint</h1>
+                <p>We're here to help. Please fill out the form below.</p>
                 
-                <form id="complaint-form" action="https://formspree.io/f/goutcontact851@gmail.com" method="POST">
-                    <input type="hidden" name="_language" id="form-language" value="en">
-                    <input type="hidden" name="_subject" value="New Complaint Submission">
-                    
+                <form id="complaint-form" method="POST">
                     <div class="form-group">
-                        <label data-translate="name_label">Your Name</label>
+                        <label>Your Name</label>
                         <input type="text" name="name" required>
                     </div>
                     
                     <div class="form-group">
-                        <label data-translate="email_label">Email Address</label>
+                        <label>Email Address</label>
                         <input type="email" name="email" required>
                     </div>
                     
                     <div class="form-group">
-                        <label data-translate="category_label">Issue Category</label>
+                        <label>Issue Category</label>
                         <select name="category" required>
-                            <option value="" data-translate="select_category">Select a category</option>
-                            <option value="Technical" data-translate="tech_issue">Technical Issue</option>
-                            <option value="Billing" data-translate="billing_issue">Billing Problem</option>
-                            <option value="Service" data-translate="service_issue">Service Complaint</option>
+                            <option value="">Select a category</option>
+                            <option value="Technical">Technical Issue</option>
+                            <option value="Billing">Billing Problem</option>
+                            <option value="Service">Service Complaint</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label data-translate="message_label">Detailed Description</label>
-                        <textarea name="message" required data-translate="message_placeholder"></textarea>
+                        <label>Detailed Description</label>
+                        <textarea name="message" required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn" data-translate="submit_btn">
+                    <button type="submit" class="btn">
                         <i class="fas fa-paper-plane"></i> Submit Complaint
                     </button>
                 </form>
+                <div id="form-message"></div>
             </div>
         </section>
 
         <!-- Careers Section -->
         <section id="careers" class="page-section">
             <div class="careers-page">
-                <h1 data-translate="careers_heading"><i class="fas fa-briefcase"></i> Join Our Team</h1>
-                <p data-translate="careers_subtext">We're building the future of AI. Come be part of something amazing.</p>
+                <h1><i class="fas fa-briefcase"></i> Join Our Team</h1>
+                <p>We're building the future of AI. Come be part of something amazing.</p>
                 
                 <div class="job-listings">
                     <div class="job-card">
-                        <h3 data-translate="job1_title">AI Engineer</h3>
-                        <p data-translate="job1_desc">Work on cutting-edge AI projects like LearnZy.</p>
-                        <button class="btn apply-btn" data-translate="apply_now">Apply Now</button>
+                        <h3>AI Engineer</h3>
+                        <p>Work on cutting-edge AI projects like LearnZy.</p>
+                        <button class="btn apply-btn">Apply Now</button>
                     </div>
                     
                     <div class="job-card">
-                        <h3 data-translate="job2_title">Support Specialist</h3>
-                        <p data-translate="job2_desc">Help users with our products and services.</p>
-                        <button class="btn apply-btn" data-translate="apply_now">Apply Now</button>
+                        <h3>Support Specialist</h3>
+                        <p>Help users with our products and services.</p>
+                        <button class="btn apply-btn">Apply Now</button>
                     </div>
                 </div>
 
                 <div id="application-form" class="application-form">
-                    <h3 data-translate="apply_for">Apply for <span id="job-title"></span></h3>
-                    <form id="career-form" action="https://formspree.io/f/goutcontact851@gmail.com" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="_language" id="form-language-career" value="en">
-                        <input type="hidden" name="_subject" value="New Job Application">
+                    <h3>Apply for <span id="job-title"></span></h3>
+                    <form id="career-form" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_job_title" id="job-title-field">
                         
                         <div class="form-group">
-                            <label data-translate="name_label">Full Name</label>
+                            <label>Full Name</label>
                             <input type="text" name="name" required>
                         </div>
                         
                         <div class="form-group">
-                            <label data-translate="email_label">Email Address</label>
+                            <label>Email Address</label>
                             <input type="email" name="email" required>
                         </div>
                         
                         <div class="form-group">
-                            <label data-translate="resume_label">Resume (PDF)</label>
+                            <label>Resume (PDF)</label>
                             <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
                         </div>
                         
-                        <button type="submit" class="btn" data-translate="submit_application">
+                        <button type="submit" class="btn">
                             <i class="fas fa-paper-plane"></i> Submit Application
                         </button>
                     </form>
+                    <div id="career-message"></div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p data-translate="copyright">© 2023 GOUT Industries. All rights reserved.</p>
+        <p>© 2023 GOUT Industries. All rights reserved.</p>
     </footer>
 
-    <!-- AI Assistant Button -->
-    <button id="ai-toggle" class="ai-toggle">
-        <i class="fas fa-robot"></i>
-    </button>
-
-    <!-- AI Assistant Chat -->
-    <div id="ai-assistant">
-        <div class="ai-header">
-            <h3><i class="fas fa-robot"></i> <span data-translate="ai_title">GOUT Assistant</span></h3>
-            <button id="ai-close"><i class="fas fa-times"></i></button>
-        </div>
-        <div id="ai-messages" class="ai-messages"></div>
-        <div class="ai-input">
-            <input type="text" id="ai-input" placeholder="Ask me anything..." data-translate="ai_placeholder">
-            <button id="ai-send"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
-    <script>
-        // ===== TRANSLATIONS =====
-        const translations = {
-            en: {
-                // General
-                title: "GOUT AI Solutions",
-                subtitle: "AI Solutions",
-                home: "Home",
-                about: "About Us",
-                support: "Support",
-                careers: "Careers",
-                copyright: "© 2023 GOUT Industries. All rights reserved.",
-                
-                // Hero section
-                hero_title: "Elevate Your Experience With GOUT",
-                hero_subtitle: "AI-powered solutions for modern businesses",
-                get_support: "Get Support",
-                join_team: "Join Our Team",
-                learn_more: "Learn About Us",
-                
-                // AI Assistant
-                ai_title: "GOUT Assistant",
-                ai_placeholder: "Ask me anything...",
-                
-                // Complaint form
-                complaint_title: "Submit Complaint - GOUT",
-                complaint_heading: "Submit a Complaint",
-                complaint_subtext: "We're here to help. Please fill out the form below.",
-                name_label: "Your Name",
-                email_label: "Email Address",
-                category_label: "Issue Category",
-                select_category: "Select a category",
-                tech_issue: "Technical Issue",
-                billing_issue: "Billing Problem",
-                service_issue: "Service Complaint",
-                message_label: "Detailed Description",
-                message_placeholder: "Describe your issue in detail...",
-                submit_btn: "Submit Complaint",
-                
-                // Careers
-                careers_title: "Careers - GOUT",
-                careers_heading: "Join Our Team",
-                careers_subtext: "We're building the future of AI. Come be part of something amazing.",
-                job1_title: "AI Engineer",
-                job1_desc: "Work on cutting-edge AI projects like LearnZy.",
-                job2_title: "Support Specialist",
-                job2_desc: "Help users with our products and services.",
-                apply_now: "Apply Now",
-                apply_for: "Apply for",
-                resume_label: "Resume (PDF)",
-                submit_application: "Submit Application",
-                
-                // About Us
-                about_title: "About GOUT - LearnZy Team",
-                about_heading: "About GOUT & LearnZy",
-                about_subheading: "Building the future of AI-powered education",
-                who_we_are: "Who We Are",
-                who_we_are_text: "LearnZy is an educational platform helping children learn mathematics in a personalized, interactive way. We're GOUT Industries - innovators in educational technology founded by Chirica Gheorghe and Siriteanu Nicolai.",
-                our_mission: "Our Mission",
-                our_mission_text: "We believe every child deserves equal access to quality education. Through technology and AI, we provide modern learning tools with constant support.",
-                core_team: "Founders & Core Team",
-                role_ceo: "CEO & Full-stack Developer",
-                role_cto: "CEO & Full-stack Developer",
-                our_values: "Our Values",
-                value1: "Transparency - Clear and honest communication",
-                value2: "Respect - Active listening and acceptance",
-                value3: "Innovation - Testing ideas, learning from mistakes",
-                value4: "Responsibility - Owning our roles and impact",
-                value5: "Mutual Support - Being there for each other"
-            },
-            ro: {
-                // General
-                title: "GOUT Soluții AI",
-                subtitle: "Soluții AI",
-                home: "Acasă",
-                about: "Despre Noi",
-                support: "Suport",
-                careers: "Cariere",
-                copyright: "© 2023 GOUT Industries. Toate drepturile rezervate.",
-                
-                // Hero section
-                hero_title: "Îmbunătățește-ți experiența cu GOUT",
-                hero_subtitle: "Soluții propulsate de AI pentru afaceri moderne",
-                get_support: "Obține suport",
-                join_team: "Alătură-te echipei",
-                learn_more: "Află despre noi",
-                
-                // AI Assistant
-                ai_title: "Asistent GOUT",
-                ai_placeholder: "Întreabă-mă orice...",
-                
-                // Complaint form
-                complaint_title: "Trimite reclamație - GOUT",
-                complaint_heading: "Trimite o reclamație",
-                complaint_subtext: "Suntem aici să te ajutăm. Completează formularul de mai jos.",
-                name_label: "Numele tău",
-                email_label: "Adresă de email",
-                category_label: "Categoria problemei",
-                select_category: "Selectează o categorie",
-                tech_issue: "Problemă tehnică",
-                billing_issue: "Problemă de facturare",
-                service_issue: "Reclamație serviciu",
-                message_label: "Descriere detaliată",
-                message_placeholder: "Descrie problema în detaliu...",
-                submit_btn: "Trimite reclamația",
-                
-                // Careers
-                careers_title: "Cariere - GOUT",
-                careers_heading: "Alătură-te echipei",
-                careers_subtext: "Construim viitorul AI. Fii parte din ceva extraordinar.",
-                job1_title: "Inginer AI",
-                job1_desc: "Lucrează la proiecte AI de ultimă oră precum LearnZy.",
-                job2_title: "Specialist Suport",
-                job2_desc: "Ajută utilizatorii cu produsele și serviciile noastre.",
-                apply_now: "Aplică acum",
-                apply_for: "Aplică pentru",
-                resume_label: "CV (PDF)",
-                submit_application: "Trimite aplicația",
-                
-                // About Us
-                about_title: "Despre GOUT - Echipa LearnZy",
-                about_heading: "Despre GOUT & LearnZy",
-                about_subheading: "Construim viitorul educației cu AI",
-                who_we_are: "Cine Suntem",
-                who_we_are_text: "LearnZy este o platformă educațională care ajută copiii să învețe matematica într-un mod personalizat și interactiv. Suntem GOUT Industries - inovatori în tehnologia educațională fondați de Chirica Gheorghe și Siriteanu Nicolai.",
-                our_mission: "Misiunea Noastră",
-                our_mission_text: "Credem că fiecare copil merită acces egal la educație de calitate. Prin tehnologie și AI, oferim instrumente moderne de învățare cu suport constant.",
-                core_team: "Fondatori & Echipa de Bază",
-                role_ceo: "CEO & Developer Full-stack",
-                role_cto: "CEO & Developer Full-stack",
-                our_values: "Valorile Noastre",
-                value1: "Transparență - Comunicare clară și onestă",
-                value2: "Respect - Ascultare activă și acceptare",
-                value3: "Inovație - Testăm idei, învățăm din greșeli",
-                value4: "Responsabilitate - Ne asumăm rolurile și impactul",
-                value5: "Sprijin Reciproc - Suntem acolo unii pentru alții"
-            }
-        };
-
-        // ===== GLOBAL VARIABLES =====
-        let currentLanguage = 'en';
-        let currentTheme = 'light';
-
-        // ===== PAGE NAVIGATION =====
-        function initPageNavigation() {
-            // Handle nav link clicks
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    
-                    // Update active nav link
-                    document.querySelectorAll('.nav-link').forEach(navLink => {
-                        navLink.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    // Show target section
-                    document.querySelectorAll('.page-section').forEach(section => {
-                        section.classList.remove('active-section');
-                    });
-                    document.getElementById(targetId).classList.add('active-section');
-                    
-                    // Update URL without reload
-                    history.pushState(null, null, `#${targetId}`);
-                    
-                    // Scroll to top
-                    window.scrollTo(0, 0);
-                });
-            });
-            
-            // Handle initial page load
-            const hash = window.location.hash.substring(1);
-            const validSections = ['home', 'about', 'complaints', 'careers'];
-            const defaultSection = validSections.includes(hash) ? hash : 'home';
-            
-            // Set active section
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active-section');
-            });
-            document.getElementById(defaultSection).classList.add('active-section');
-            
-            // Set active nav link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${defaultSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // ===== LANGUAGE FUNCTIONS =====
-        function applyTranslations(lang) {
-            currentLanguage = lang;
-            document.documentElement.lang = lang;
-            
-            // Update all translatable elements
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
-                    } else if (el.tagName === 'OPTION') {
-                        el.textContent = translations[lang][key];
-                    } else {
-                        el.textContent = translations[lang][key];
-                    }
-                }
-            });
-            
-            // Update form language hidden fields
-            const formLangInputs = document.querySelectorAll('[id^="form-language"]');
-            formLangInputs.forEach(input => {
-                input.value = lang;
-            });
-            
-            // Update active language button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
-            
-            // Update page title
-            const activeSection = document.querySelector('.page-section.active-section');
-            if (activeSection) {
-                const sectionId = activeSection.id;
-                if (sectionId === 'home') {
-                    document.title = translations[lang].title;
-                } else if (sectionId === 'about') {
-                    document.title = translations[lang].about_title;
-                } else if (sectionId === 'complaints') {
-                    document.title = translations[lang].complaint_title;
-                } else if (sectionId === 'careers') {
-                    document.title = translations[lang].careers_title;
-                }
-            }
-        }
-
-        // ===== THEME FUNCTIONS =====
-        function toggleTheme() {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
-            
-            // Update icon
-            const icon = document.querySelector('#theme-toggle i');
-            if (icon) {
-                icon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            currentTheme = savedTheme;
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            
-            // Set correct icon
-            const icon = document.querySelector('#theme-toggle i');
-            if (icon) {
-                icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-
-        // ===== AI ASSISTANT FUNCTIONS =====
-        function initAIAssistant() {
-            const aiToggle = document.getElementById('ai-toggle');
-            const aiAssistant = document.getElementById('ai-assistant');
-            const aiClose = document.getElementById('ai-close');
-            const aiMessages = document.getElementById('ai-messages');
-            const aiInput = document.getElementById('ai-input');
-            const aiSend = document.getElementById('ai-send');
-            
-            if (!aiToggle) return;
-            
-            let aiActive = false;
-            
-            // Toggle assistant visibility
-            aiToggle.addEventListener('click', () => {
-                aiActive = !aiActive;
-                aiAssistant.style.display = aiActive ? 'flex' : 'none';
-            });
-            
-            // Close assistant
-            aiClose.addEventListener('click', () => {
-                aiActive = false;
-                aiAssistant.style.display = 'none';
-            });
-            
-            // Add message to chat
-            function addMessage(sender, text) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${sender}`;
-                messageDiv.textContent = text;
-                aiMessages.appendChild(messageDiv);
-                aiMessages.scrollTop = aiMessages.scrollHeight;
-            }
-            
-            // Get AI response based on language
-            function getAIResponse(message) {
-                const lowerMsg = message.toLowerCase();
-                
-                if (lowerMsg.includes('complaint') || lowerMsg.includes('problem') || lowerMsg.includes('reclama') || lowerMsg.includes('problemă')) {
-                    return currentLanguage === 'en' 
-                        ? "You can submit complaints on our support page. All complaints are sent to goutcontact851@gmail.com and will be addressed promptly." 
-                        : "Puteți trimite reclamații pe pagina noastră de suport. Toate reclamațiile sunt trimise la goutcontact851@gmail.com și vor fi rezolvate cât mai rapid posibil.";
-                } else if (lowerMsg.includes('job') || lowerMsg.includes('career') || lowerMsg.includes('loc de muncă') || lowerMsg.includes('carieră')) {
-                    return currentLanguage === 'en'
-                        ? "Check our careers page for open positions. Applications are sent directly to goutcontact851@gmail.com."
-                        : "Verificați pagina noastră de cariere pentru posturi disponibile. Aplicațiile sunt trimise direct la goutcontact851@gmail.com.";
-                } else if (lowerMsg.includes('about') || lowerMsg.includes('despre')) {
-                    return currentLanguage === 'en'
-                        ? "Learn more about us on the About page. GOUT Industries was founded by Chirica Gheorghe and Siriteanu Nicolai."
-                        : "Aflați mai multe despre noi pe pagina Despre Noi. GOUT Industries a fost fondată de Chirica Gheorghe și Siriteanu Nicolai.";
-                } else {
-                    return currentLanguage === 'en'
-                        ? "I'm GOUT's AI assistant. How can I help you today? For direct support, email goutcontact851@gmail.com"
-                        : "Sunt asistentul AI al GOUT. Cum vă pot ajuta astăzi? Pentru suport direct, trimiteți un email la goutcontact851@gmail.com";
-                }
-            }
-            
-            // Handle message sending
-            function sendMessage() {
-                const message = aiInput.value.trim();
-                if (!message) return;
-                
-                addMessage('user', message);
-                aiInput.value = '';
-                
-                // Show typing indicator
-                const typingIndicator = document.createElement('div');
-                typingIndicator.className = 'message ai typing';
-                typingIndicator.innerHTML = '<div class="typing-dots"><div></div><div></div><div></div></div>';
-                aiMessages.appendChild(typingIndicator);
-                aiMessages.scrollTop = aiMessages.scrollHeight;
-                
-                // Remove typing indicator and show response after delay
-                setTimeout(() => {
-                    if (typingIndicator.parentNode) {
-                        aiMessages.removeChild(typingIndicator);
-                    }
-                    const response = getAIResponse(message);
-                    addMessage('ai', response);
-                }, 1000);
-            }
-            
-            // Event listeners
-            aiSend.addEventListener('click', sendMessage);
-            aiInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') sendMessage();
-            });
-            
-            // Initial welcome message
-            setTimeout(() => {
-                addMessage('ai', currentLanguage === 'en' 
-                    ? "Hello! I'm GOUT's AI assistant. How can I help you today? For direct support, email goutcontact851@gmail.com" 
-                    : "Bună! Sunt asistentul AI al GOUT. Cum vă pot ajuta astăzi? Pentru suport direct, trimiteți un email la goutcontact851@gmail.com");
-            }, 1500);
-        }
-
-        // ===== FORM HANDLING =====
-        function initForms() {
-            // Complaint form
-            const complaintForm = document.getElementById('complaint-form');
-            if (complaintForm) {
-                complaintForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Show loading state
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
-                    submitBtn.disabled = true;
-                    
-                    // Prepare form data
-                    const formData = new FormData(this);
-                    
-                    // Send to Formspree
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            // Show success message
-                            const successDiv = document.createElement('div');
-                            successDiv.className = 'alert success';
-                            successDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
-                                (currentLanguage === 'en' 
-                                    ? 'Your complaint has been submitted to goutcontact851@gmail.com!' 
-                                    : 'Reclamația dumneavoastră a fost trimisă la goutcontact851@gmail.com!');
-                            this.parentNode.insertBefore(successDiv, this.nextSibling);
-                            
-                            // Reset form
-                            this.reset();
-                            
-                            // Remove message after 5 seconds
-                            setTimeout(() => {
-                                successDiv.remove();
-                            }, 5000);
-                        } else {
-                            throw new Error('Form submission failed');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert(currentLanguage === 'en' 
-                            ? 'Failed to submit complaint. Please try again or email goutcontact851@gmail.com directly.' 
-                            : 'Trimiterea reclamației a eșuat. Încercați din nou sau trimiteți direct un email la goutcontact851@gmail.com.');
-                    })
-                    .finally(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    });
-                });
-            }
-            
-            // Career application form
-            const careerForm = document.getElementById('career-form');
-            if (careerForm) {
-                careerForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Show loading state
-                    const submitBtn = this.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
-                    submitBtn.disabled = true;
-                    
-                    // Prepare form data
-                    const formData = new FormData(this);
-                    
-                    // Send to Formspree
-                    fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            // Show success message
-                            const successDiv = document.createElement('div');
-                            successDiv.className = 'alert success';
-                            successDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
-                                (currentLanguage === 'en' 
-                                    ? 'Application submitted to goutcontact851@gmail.com successfully!' 
-                                    : 'Aplicația a fost trimisă la goutcontact851@gmail.com cu succes!');
-                            this.parentNode.insertBefore(successDiv, this.nextSibling);
-                            
-                            // Reset form
-                            this.reset();
-                            document.getElementById('application-form').style.display = 'none';
-                            
-                            // Remove message after 5 seconds
-                            setTimeout(() => {
-                                successDiv.remove();
-                            }, 5000);
-                        } else {
-                            throw new Error('Form submission failed');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert(currentLanguage === 'en' 
-                            ? 'Failed to submit application. Please try again or email goutcontact851@gmail.com directly.' 
-                            : 'Trimiterea aplicației a eșuat. Încercați din nou sau trimiteți direct un email la goutcontact851@gmail.com.');
-                    })
-                    .finally(() => {
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.disabled = false;
-                    });
-                });
-            }
-        }
-
-        // ===== JOB APPLICATION FORM TOGGLE =====
-        function initJobApplication() {
-            const applyButtons = document.querySelectorAll('.apply-btn');
-            const applicationForm = document.getElementById('application-form');
-            
-            if (!applyButtons.length || !applicationForm) return;
-            
-            applyButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const jobTitle = btn.closest('.job-card').querySelector('h3').textContent;
-                    document.getElementById('job-title').textContent = jobTitle;
-                    document.getElementById('job-title-field').value = jobTitle;
-                    applicationForm.style.display = 'block';
-                    
-                    // Scroll to form
-                    applicationForm.scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-        }
-
-        // ===== INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize theme
-            initTheme();
-            
-            // Theme toggle button
-            const themeToggle = document.getElementById('theme-toggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
-            }
-            
-            // Language switcher
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const lang = btn.dataset.lang;
-                    applyTranslations(lang);
-                    localStorage.setItem('language', lang);
-                });
-            });
-            
-            // Initialize language from localStorage
-            const savedLang = localStorage.getItem('language') || 'en';
-            applyTranslations(savedLang);
-            
-            // Initialize page navigation
-            initPageNavigation();
-            
-            // Initialize AI assistant
-            initAIAssistant();
-            
-            // Initialize forms
-            initForms();
-            
-            // Initialize job application
-            initJobApplication();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
