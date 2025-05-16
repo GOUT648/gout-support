@@ -357,7 +357,7 @@ function initAIAssistant() {
 
 // ===== FORM HANDLING =====
 function initForms() {
-    // Complaint form
+    // Complaint form - Updated with Google Apps Script integration
     const complaintForm = document.getElementById('complaint-form');
     if (complaintForm) {
         complaintForm.addEventListener('submit', function(e) {
@@ -370,25 +370,35 @@ function initForms() {
             submitBtn.disabled = true;
             
             // Prepare form data
-            const formData = new FormData(this);
+            const formData = {
+                name: this.querySelector('[name="name"]').value,
+                email: this.querySelector('[name="email"]').value,
+                category: this.querySelector('[name="category"]').value,
+                message: this.querySelector('[name="message"]').value,
+                language: currentLanguage
+            };
             
-            // Send to Formspree
-            fetch(this.action, {
+            // Replace with your deployed Google Apps Script URL
+            const scriptUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+            
+            // Send to Google Apps Script
+            fetch(scriptUrl, {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(formData),
                 headers: {
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
                     // Show success message
                     const successDiv = document.createElement('div');
                     successDiv.className = 'alert success';
                     successDiv.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
                         (currentLanguage === 'en' 
-                            ? 'Your complaint has been submitted to goutcontact851@gmail.com!' 
-                            : 'Reclamația dumneavoastră a fost trimisă la goutcontact851@gmail.com!');
+                            ? 'Your complaint has been submitted successfully!' 
+                            : 'Reclamația dumneavoastră a fost trimisă cu succes!');
                     this.parentNode.insertBefore(successDiv, this.nextSibling);
                     
                     // Reset form
@@ -399,7 +409,7 @@ function initForms() {
                         successDiv.remove();
                     }, 5000);
                 } else {
-                    throw new Error('Form submission failed');
+                    throw new Error(data.message);
                 }
             })
             .catch(error => {
