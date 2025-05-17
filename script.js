@@ -357,40 +357,43 @@ function initAIAssistant() {
 
 // ===== FORM HANDLING =====
 function initForms() {
-    // Complaint form - Updated with Google Apps Script integration
+    // Complaint form - Updated with proper error handling
     const complaintForm = document.getElementById('complaint-form');
     if (complaintForm) {
-        complaintForm.addEventListener('submit', function(e) {
+        complaintForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Show loading state
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + 
+                (currentLanguage === 'en' ? 'Sending...' : 'Se trimite...');
             submitBtn.disabled = true;
             
-            // Prepare form data
-            const formData = {
-                name: this.querySelector('[name="name"]').value,
-                email: this.querySelector('[name="email"]').value,
-                category: this.querySelector('[name="category"]').value,
-                message: this.querySelector('[name="message"]').value,
-                language: currentLanguage
-            };
-            
-            // Replace with your deployed Google Apps Script URL
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwve4aqDvuAaS8_un4qbS-F31rvYDDaCpr5_J67vD6KWL-BABV8ZujxWEN75YoiD42H/exec';
-            
-            // Send to Google Apps Script
-            fetch(scriptUrl, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                // Prepare form data
+                const formData = {
+                    name: this.querySelector('[name="name"]').value,
+                    email: this.querySelector('[name="email"]').value,
+                    category: this.querySelector('[name="category"]').value,
+                    message: this.querySelector('[name="message"]').value,
+                    language: currentLanguage
+                };
+                
+                // Replace with your actual deployed Google Apps Script URL
+                const scriptUrl = 'https://script.google.com/macros/s/AKfycby4NGDHUoPtwGRoKR1vCoQ85aRcuPd5z-YyF0CpTRlkhIk49xayYEv2ekkHUEZtu_Mr/exec';
+                
+                // Send to Google Apps Script
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
                 if (data.success) {
                     // Show success message
                     const successDiv = document.createElement('div');
@@ -409,21 +412,22 @@ function initForms() {
                         successDiv.remove();
                     }, 5000);
                 } else {
-                    throw new Error(data.message);
+                    throw new Error(data.message || 'Submission failed');
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error:', error);
                 alert(currentLanguage === 'en' 
                     ? 'Failed to submit complaint. Please try again or email goutcontact851@gmail.com directly.' 
                     : 'Trimiterea reclamației a eșuat. Încercați din nou sau trimiteți direct un email la goutcontact851@gmail.com.');
-            })
-            .finally(() => {
+            } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            });
+            }
         });
     }
+    
+    // ... rest of your form handling code ...
+}
     
     // Career application form
     const careerForm = document.getElementById('career-form');
