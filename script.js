@@ -379,7 +379,7 @@ function initForms() {
             };
             
             // Replace with your deployed Google Apps Script URL
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbx59kRvATJPfl1FtBzJPRil_KxNXzUJ1QKRdrHp8sYd1bANioKKsyypXy13F_g_em74/exec';
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwve4aqDvuAaS8_un4qbS-F31rvYDDaCpr5_J67vD6KWL-BABV8ZujxWEN75YoiD42H/exec';
             
             // Send to Google Apps Script
             fetch(scriptUrl, {
